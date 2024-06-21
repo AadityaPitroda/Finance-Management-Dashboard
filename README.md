@@ -49,6 +49,26 @@ Folder Structure
 5. Delete file from ``app`` folder ``favicon.ico and globals.css``, ``lib``, ``public``, ``tailwind.config.ts`` folder as we create from stratch
 
 ## File and Folder Structure
+For having a one single layout & managing layoutsv(A layout is specific UI that you can see across multiple pages), like homepages or root pages have one layout and Auth pages have one layout, for achieving this I had use Functionality of ``Next JS``, [Route Groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups).
+
+Delete file ``Finance Management Dashboard/jsm_banking/app/page.tsx`` and create folder named ``(root)`` and create two files inside it named as ``page.tsx`` & ``layout.tsx``
+
+Create Folder and file in that structure:
+```
+└── 📁app
+    └── 📁(auth)
+        └── layout.tsx
+        └── 📁sign-in
+            └── page.tsx
+        └── 📁sign-up
+            └── page.tsx
+    └── 📁(root)
+        └── layout.tsx
+        └── page.tsx
+    └── globals.css
+    └── layout.tsx
+```
+Now we will our application through this command ``npm run dev``
 
 ## Home Page UI
 
