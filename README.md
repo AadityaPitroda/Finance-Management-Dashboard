@@ -120,7 +120,140 @@ This part (commented out in some cases) defines an interface called HeaderBoxPro
 
 5. Exporting Component.
 
-### Create ``TotalBalanceBox.tsx`` file inside ``jsm_banking/components/HeaderBox.tsx`` and write this code:
+### Create ``TotalBalanceBox.tsx`` file inside ``jsm_banking/components/TotalBalanceBox.tsx`` and write this code:
+
+```
+
+import React from 'react'
+import AnimatedCounter from './AnimatedCounter';
+import DoughnutChart from './DoughnutChart';
+
+const TotalBalanceBox = ({accounts = [], totalBanks, totalCurrentBalance
+
+}: TotlaBalanceBoxProps) => {
+  return (
+    <section className='total-balance'>
+        <div className='total-balance-chart'>
+            <DoughnutChart accounts={ accounts }/>
+        </div>
+        <div className='flex flex-col gap-6'>
+            <h2 className='header-2'>
+                Bank Accounts: {totalBanks}
+            </h2>
+            <div className='flex flex-col gap-2'>
+                <p className='total-balance-label'>
+                    Total Current Balance
+                </p>
+                <div className='total-balance-amount flex-center gap-2'>
+                    {/* To change USD currency to INR currency: jsm_banking/lib/utils.ts , Change formatAmount() func*/}
+                    <AnimatedCounter amount={totalCurrentBalance}/>
+                    {/* {formatAmount(totalCurrentBalance)} */}
+                </div>
+            </div>
+        </div>
+    </section>
+  )
+}
+
+export default TotalBalanceBox
+```
+
+### Create ``DoughnutChart.tsx`` file inside ``jsm_banking/components/DoughnutChart.tsx`` and write this code:
+```
+"use client"
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+const DoughnutChart = ({ accounts }: DoughnutChartProps) => {
+
+    const data = {
+        datasets : [
+            {
+                label: 'Banks',
+                data: [2500, 3000, 1100],
+                backgroundColor: ['#0747b6', '#02265d8', '#2f91fa']
+            }
+        ],
+        labels: ['Bank 1', 'Bank 2', 'Bank 3']
+    }
+
+  return <Doughnut 
+  data={data}
+  options={{
+    cutout: '60%',
+    plugins:{
+        legend:{
+            display: false
+        }
+    }
+  }}
+  />
+}
+
+export default DoughnutChart
+```
+
+### Create ``AnimatedCounter.tsx`` file inside ``jsm_banking/components/AnimatedCounter.tsx`` and write this code:
+Install npm modules ``chartjs`` and ``react-chartjs-2``
+
+```
+'use client';
+import CountUp from 'react-countup';
+
+
+const AnimatedCounter = ({ amount }: { amount: number }) => {
+  return (
+    <div className='w-full'>
+        <CountUp 
+        duration={2.45}
+        decimals={2}
+        decimal='.'
+        prefix='$' 
+        end={amount} />
+    </div>
+  )
+}
+
+export default AnimatedCounter
+```
+
+### Create ``page.tsx`` file inside ``jsm_banking/app/(root)/page.tsx`` and write this code:
+```
+import HeaderBox from '@/components/HeaderBox'
+import TotalBalanceBox from '@/components/TotalBalanceBox';
+
+const Home = () => {
+  const loggedIN = {firstName: "Aaditya Pitroda"};
+
+  return (
+    // ClassName 'home' propertise mentioned in "app/globals.css"
+    <section className='home'>  
+      <div className='home-content'>
+        <header className='home-header'>
+
+          <HeaderBox 
+          type = "greeting"
+          title="Welcome"
+          user={loggedIN?.firstName || 'Guest'}
+          subtext="Access and manage your account and transactions efficiently."
+          />
+          <TotalBalanceBox 
+          accounts = {[]}
+          totalBanks = {1}
+          totalCurrentBalance = {1809.20}
+          />
+
+        </header>
+      </div>
+    </section>
+  )
+}
+
+export default Home
+```
 
 ## Slide bars
 
