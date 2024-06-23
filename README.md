@@ -71,6 +71,56 @@ Create Folder and file in that structure:
 Now we will our application through this command ``npm run dev``
 
 ## Home Page UI
+### Create ``HeaderBox.tsx`` file inside ``jsm_banking/components/HeaderBox.tsx`` and write this code:
+
+HeaderBox.tsx File Code:
+```
+import React from 'react'
+
+const HeaderBox = ({ type="title", title, subtext, user }: HeaderBoxProps) => {
+  return (
+    <div className='header-box'>
+        <h1 className='header-box-title'>
+            {title}
+            {type == 'greeting' && (
+                <span className='text-bankGradient'>
+                    &nbsp;{user}
+                </span>
+            )}
+        
+        </h1>
+        <p className='header-box-subtext'>
+            {subtext}
+        </p>
+    </div>
+  )
+}
+
+export default HeaderBox
+```
+1. Import ``react`` libraries
+2. **Defining the components:**
+This defines a functional React component named HeaderBox. It takes an argument called props (short for properties), which is an object containing the data that will be used to customize the component's appearance and behavior.
+Inside the curly braces ({}), the component's logic will be defined.
+3. **Interface:**
+This part (commented out in some cases) defines an interface called HeaderBoxProps. An interface is a blueprint that specifies the expected structure and types of the props that the HeaderBox component can receive. This helps with code clarity and type checking during development.
+
+    ``type``: An optional string value that can be used for conditional rendering. Defaults to "title".
+    ``title``: A required string value that will be displayed as the main heading.
+    ``subtext``: A required string value that will be displayed as a smaller subtitle below the title.
+    ``user``: An optional string value that will be displayed if present.
+
+4. **Component Logic:** 
+    This section defines what the component will render on the screen using JSX syntax (which looks like HTML but is used for building React components).
+        It returns a div element with the class name header-box, which likely contains styles for the overall header box.
+        Inside the div, an h1 element is used for the title, with the class name header-box-title.
+            The title prop is displayed using curly braces ({}).
+            There's a conditional statement using type === 'greeting' to check if the type prop is set to "greeting". If it is, a span element will be rendered inside the h1. This span element has the class name text-bankGradient and displays the user prop with a non-breaking space (&nbsp;) before it. This likely creates a visual distinction for the user name.
+        Below the h1, a p element with the class name header-box-subtext is used to display the subtext prop.
+
+5. Exporting Component.
+
+### Create ``TotalBalanceBox.tsx`` file inside ``jsm_banking/components/HeaderBox.tsx`` and write this code:
 
 ## Slide bars
 

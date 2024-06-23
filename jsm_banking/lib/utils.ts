@@ -75,6 +75,21 @@ export function formatAmount(amount: number): string {
   return formatter.format(amount);
 }
 
+// Convert USD Currency to INR Currency
+
+
+// export function formatAmount(amount: number): string {
+//   const formatter = new Intl.NumberFormat("en-IN", {
+//     style: "currency",
+//     currency: "INR",
+//     minimumFractionDigits: 2,
+//   });
+
+//   return formatter.format(amount);
+// }
+
+
+
 export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
 
 export const removeSpecialCharacters = (value: string) => {
