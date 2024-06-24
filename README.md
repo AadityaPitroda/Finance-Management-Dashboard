@@ -256,6 +256,7 @@ export default Home
 ```
 
 ## Slide bars
+Implemented Complete Layout
 
 ## Auth Page UI
 
