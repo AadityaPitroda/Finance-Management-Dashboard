@@ -256,9 +256,14 @@ export default Home
 ```
 
 ## Slide bars
-Implemented Complete Layout
+Git Commit Message: "Implemented Complete Layout"
 
 ## Auth Page UI
+Git Commit Message: ""
+
+To Authenticate ( sign-up & sign-in page ) we are using (React Hook Form)[https://ui.shadcn.com/docs/components/form], Firstly we install it using ``npx shadcn-ui@latest add form`` & ``npx shadcn-ui@latest add form button input
+`` command in terminal.
+
 
 ## App Write Authentication
 
